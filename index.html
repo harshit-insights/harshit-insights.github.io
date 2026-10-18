@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Harshit Tiwari, Data Analyst: Python, SQL, Excel and Power BI projects.">
+<title>Harshit Tiwari Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: fixed profile sidebar on the left, scrolling dashboard-style content on the right; stacks to one column on phones.
+   Light-first: cool white ground, navy ink, teal as the lead colour, coral and blue as per-project accents.
+   Type: Sora for headings and big figures, DM Sans for text, DM Mono for labels. */
+:root {
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --panel-2: #eef2f9;
+  --line: #dde4f0;
+  --ink: #121a2f;
+  --muted: #566079;
+  --teal: #087a6b;
+  --teal-soft: #d9f2ee;
+  --coral: #c93f2a;
+  --coral-soft: #fde5df;
+  --blue: #2f55d4;
+  --blue-soft: #e1e8fc;
+  --sun: #f2b53a;
+  --shadow: 0 1px 2px rgba(18, 26, 47, .05), 0 8px 24px rgba(18, 26, 47, .06);
+  --head: "Sora", system-ui, "Segoe UI", sans-serif;
+  --text: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1323; --panel: #161d34; --panel-2: #1e2744; --line: #2a3556;
+    --ink: #eaf0ff; --muted: #9ba8cb;
+    --teal: #43d9c3; --teal-soft: #123a3b; --coral: #ff8f78; --coral-soft: #44221f;
+    --blue: #93abff; --blue-soft: #1d2a57; --sun: #f2b53a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1323; --panel: #161d34; --panel-2: #1e2744; --line: #2a3556;
+  --ink: #eaf0ff; --muted: #9ba8cb;
+  --teal: #43d9c3; --teal-soft: #123a3b; --coral: #ff8f78; --coral-soft: #44221f;
+  --blue: #93abff; --blue-soft: #1d2a57; --sun: #f2b53a;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 var(--text);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--blue); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; border-radius: 6px; }
+h1, h2, h3, h4 { font-family: var(--head); margin: 0; text-wrap: balance; }
+.mono { font-family: var(--mono); }
+
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 264px minmax(0, 1fr); gap: 40px; padding-block: 28px 48px; }
+
+/* sidebar */
+.side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 28px); align-self: start; display: grid; gap: 18px; }
+.id { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); display: grid; gap: 14px; }
+.mono-mark { width: 64px; height: 64px; border-radius: 18px; background: var(--teal); color: #fff; display: grid; place-items: center; font: 700 24px var(--head); letter-spacing: -.02em; }
+:root[data-theme="dark"] .mono-mark { color: #07201d; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mono-mark { color: #07201d; } }
+.id h1 { font-size: 22px; line-height: 1.2; letter-spacing: -.01em; }
+.id .role { color: var(--muted); font-size: 15px; margin-top: -8px; }
+.avail { display: inline-flex; align-items: center; gap: 8px; background: var(--teal-soft); color: var(--teal); font: 500 12px/1.3 var(--mono); padding: 7px 11px; border-radius: 999px; width: fit-content; }
+.avail i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.where { font-size: 14px; color: var(--muted); margin: 0; }
+.nav { display: grid; gap: 2px; }
+.nav a { font: 500 14px var(--text); color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 10px; display: flex; justify-content: space-between; }
+.nav a:hover { background: var(--panel-2); color: var(--ink); }
+.nav a.on { background: var(--panel-2); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--teal); }
+.side-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { font: 600 14px var(--text); text-decoration: none; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+:root[data-theme="dark"] .btn.primary { color: #07201d; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #07201d; } }
+.btn.small { padding: 7px 11px; font-size: 13px; }
+
+/* main column */
+.main { display: grid; gap: 28px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow); }
+.label { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+.hero { padding: 36px 32px 32px; }
+.hero h2 { font-size: clamp(30px, 4.6vw, 48px); line-height: 1.1; font-weight: 800; letter-spacing: -.03em; margin: 12px 0 16px; max-width: 18ch; }
+.hero h2 mark { background: linear-gradient(transparent 62%, var(--sun) 62%); color: inherit; padding: 0 .08em; }
+.hero p { margin: 0; max-width: 58ch; color: var(--muted); font-size: 18px; }
+.glance { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
+.tile { background: var(--panel-2); border-radius: 14px; padding: 14px 16px; }
+.tile b { display: block; font: 700 26px/1.1 var(--head); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.tile span { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.tile:nth-child(1) b { color: var(--teal); } .tile:nth-child(2) b { color: var(--coral); } .tile:nth-child(3) b { color: var(--blue); } .tile:nth-child(4) b { color: var(--ink); }
+
+.sec-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.sec-title h3 { font-size: 24px; letter-spacing: -.02em; }
+.sec-title span { font: 400 13px var(--mono); color: var(--muted); }
+
+/* about */
+.about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; }
+.about p { margin: 0 0 14px; max-width: 58ch; }
+.skill { display: grid; gap: 8px; margin-bottom: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 13px var(--mono); padding: 4px 11px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); }
+.chip.t { background: var(--teal-soft); border-color: transparent; color: var(--teal); }
+.chip.c { background: var(--coral-soft); border-color: transparent; color: var(--coral); }
+.chip.b { background: var(--blue-soft); border-color: transparent; color: var(--blue); }
+
+/* projects */
+.proj { --acc: var(--teal); --acc-soft: var(--teal-soft); padding: 0; overflow: hidden; }
+.proj.p2 { --acc: var(--coral); --acc-soft: var(--coral-soft); }
+.proj.p3 { --acc: var(--blue); --acc-soft: var(--blue-soft); }
+.proj + .proj { margin-top: 0; }
+.proj-head { background: var(--acc-soft); padding: 22px 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; border-bottom: 1px solid var(--line); }
+.proj-head h4 { font-size: 20px; line-height: 1.25; letter-spacing: -.015em; max-width: 30ch; }
+.proj-head .ctx { font: 400 13px var(--mono); color: var(--muted); margin-top: 6px; }
+.proj-body { padding: 24px 28px 28px; display: grid; gap: 22px; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.metric { border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.metric b { display: block; font: 700 28px/1.1 var(--head); color: var(--acc); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.metric span { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.star { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.step { background: var(--panel-2); border-radius: 14px; padding: 14px 16px; }
+.step.wide { grid-column: 1 / -1; }
+.step h5 { margin: 0 0 4px; font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--acc); }
+.step p { margin: 0; font-size: 15px; }
+.num { font-weight: 700; font-variant-numeric: tabular-nums; }
+.chart { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+.chart h5 { margin: 0 0 12px; font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.brow { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; align-items: center; margin-bottom: 8px; font-size: 13px; }
+.brow .lab { color: var(--muted); }
+.track { position: relative; height: 22px; }
+.track .zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--muted); opacity: .5; }
+.track .fill { position: absolute; top: 3px; bottom: 3px; border-radius: 6px; background: var(--acc-soft); box-shadow: inset 0 0 0 1px var(--acc); }
+.track .fill.hi { background: var(--acc); box-shadow: none; }
+.track .fill.neg { background: var(--coral-soft); box-shadow: inset 0 0 0 1px var(--coral); }
+.track .val { position: absolute; top: 0; line-height: 22px; font: 500 12px var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chart .note { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+
+/* experience, education */
+.job { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; }
+.job .when { font: 500 13px var(--mono); color: var(--teal); padding-top: 4px; }
+.job h4 { font-size: 19px; letter-spacing: -.01em; }
+.job .org { color: var(--muted); margin: 2px 0 10px; }
+.job ul { margin: 0; padding-left: 18px; max-width: 66ch; }
+.job li { margin-bottom: 6px; }
+.edu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--panel); }
+.card .big { font: 800 30px/1.1 var(--head); letter-spacing: -.03em; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
+.card:nth-child(1) .big { color: var(--teal); } .card:nth-child(2) .big { color: var(--coral); } .card:nth-child(3) .big { color: var(--blue); }
+.card strong { display: block; font-size: 15px; }
+.card p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
+.certs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+/* contact */
+.contact { background: var(--teal); color: #fff; border: 0; display: grid; gap: 16px; justify-items: start; }
+:root[data-theme="dark"] .contact { color: #07201d; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact { color: #07201d; } }
+.contact .label { color: inherit; opacity: .8; }
+.contact h3 { font-size: clamp(26px, 4vw, 36px); line-height: 1.12; letter-spacing: -.025em; max-width: 20ch; }
+.email { font: 500 18px var(--mono); user-select: all; overflow-wrap: anywhere; }
+.contact .btn { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.5); color: inherit; }
+.contact .btn:hover { background: rgba(255,255,255,.26); }
+:root[data-theme="dark"] .contact .btn { background: rgba(7,32,29,.12); border-color: rgba(7,32,29,.4); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact .btn { background: rgba(7,32,29,.12); border-color: rgba(7,32,29,.4); } }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+footer { text-align: center; color: var(--muted); font: 400 12px var(--mono); padding-bottom: 8px; }
+
+@media (max-width: 980px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-top: 16px; }
+  .side { position: static; }
+  .id { grid-template-columns: auto minmax(0, 1fr); column-gap: 16px; align-items: center; }
+  .id .block-rest { grid-column: 1 / -1; }
+  .nav { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 2px; }
+  .nav a { white-space: nowrap; }
+  .nav a.on { box-shadow: inset 0 -3px 0 var(--teal); }
+  .about { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .glance, .metrics, .edu { grid-template-columns: minmax(0, 1fr); }
+  .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .star { grid-template-columns: minmax(0, 1fr); }
+  .job { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .panel { padding: 20px; } .hero { padding: 26px 20px; }
+  .proj-head, .proj-body { padding-left: 20px; padding-right: 20px; }
+  .brow { grid-template-columns: 104px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="side">
+    <div class="id">
+      <div class="mono-mark" aria-hidden="true">HT</div>
+      <div>
+        <h1>Harshit Tiwari</h1>
+        <div class="role">Data Analyst</div>
+      </div>
+      <div class="block-rest" style="display:grid;gap:12px">
+        <span class="avail"><i></i>Available · relocating anywhere in India</span>
+        <p class="where">Gorakhpur, Uttar Pradesh, India</p>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Sections" id="nav">
+      <a href="#top" class="on">Overview</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="side-actions">
+      <a class="btn primary small" href="https://github.com/harshit-insights" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn small" href="https://www.linkedin.com/in/harshit-tiwari-264a05249" target="_blank" rel="noopener">LinkedIn</a>
+      <button class="btn small" id="theme" type="button" aria-label="Switch between light and dark theme">Theme</button>
+    </div>
+  </aside>
+
+  <main class="main" id="top">
+    <section class="panel hero">
+      <div class="label">Data Analyst portfolio</div>
+      <h2>I turn messy business data into <mark>decisions</mark>.</h2>
+      <p>I clean and validate data in Python and SQL, then build dashboards that tell a team where to spend, what to fix and what to watch. Three end-to-end projects, each with code on GitHub.</p>
+      <div class="glance">
+        <div class="tile"><b>6 mo</b><span>analyst internship</span></div>
+        <div class="tile"><b>3</b><span>end-to-end projects</span></div>
+        <div class="tile"><b>5,852</b><span>customers segmented</span></div>
+        <div class="tile"><b>86 → 4</b><span>false anomaly flags</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="about">
+      <div class="sec-title"><h3>About</h3><span>who I am and what I use</span></div>
+      <div class="about">
+        <div>
+          <p>I am a Data Analyst who completed a six-month internship at Unified Mentor, working on healthcare and e-commerce data. My work follows one pattern: find what is wrong with the raw data, fix it with a check I can explain, then turn the cleaned data into a number someone can act on.</p>
+          <p>I hold a B.Tech in Computer Science Engineering and I am looking for a full-time analyst role. I can relocate anywhere in India.</p>
+        </div>
+        <div>
+          <div class="skill"><div class="label">Analysis</div><div class="chips"><span class="chip t">Python</span><span class="chip t">Pandas</span><span class="chip t">NumPy</span><span class="chip t">SQL</span><span class="chip t">Excel (Advanced)</span></div></div>
+          <div class="skill"><div class="label">Visualization</div><div class="chips"><span class="chip c">Power BI</span><span class="chip c">Tableau</span><span class="chip c">Streamlit</span><span class="chip c">Plotly</span></div></div>
+          <div class="skill"><div class="label">Methods</div><div class="chips"><span class="chip b">Data cleaning &amp; validation</span><span class="chip b">KPI design</span><span class="chip b">EDA</span><span class="chip b">RFM segmentation</span><span class="chip b">Pareto analysis</span><span class="chip b">Data storytelling</span></div></div>
+          <div class="skill"><div class="label">Tools</div><div class="chips"><span class="chip">Git / GitHub</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="projects" style="display:grid;gap:28px">
+      <div class="sec-title" style="margin:0 4px"><h3>Projects</h3><span>situation, task, action, result</span></div>
+
+      <article class="panel proj p1">
+        <div class="proj-head">
+          <div>
+            <h4>Customer Segmentation and Retention Campaign ROI</h4>
+            <div class="ctx">Online Retail II · Python · Pandas · Power BI</div>
+          </div>
+          <a class="btn small" href="https://github.com/harshit-insights/Customer_Segmentation_RFM_Analysis" target="_blank" rel="noopener">GitHub repo ↗</a>
+        </div>
+        <div class="proj-body">
+          <div class="metrics">
+            <div class="metric"><b>5,852</b><span>customers segmented into 6 groups</span></div>
+            <div class="metric"><b>11.1</b><span>highest ROI, At Risk segment</span></div>
+            <div class="metric"><b>70%</b><span>of revenue from 24% of customers</span></div>
+          </div>
+          <div class="star">
+            <div class="step"><h5>Situation</h5><p>A retailer's marketing team had a limited retention budget and no data-backed way to choose which of its <span class="num">5,852</span> customers (<span class="num">£16.77M</span> revenue) to target.</p></div>
+            <div class="step"><h5>Task</h5><p>Find the segment with the highest retention-campaign ROI and recommend how to split the budget.</p></div>
+            <div class="step wide"><h5>Action</h5><p>Cleaned the data (dropped <span class="num">243,007</span> rows with no Customer ID), scored Recency and Frequency <span class="num">1 to 5</span>, built an ROI and budget-allocation model in Python, and a <span class="num">5</span>-page Power BI dashboard with What-if sliders for margin, budget and hurdle ROI.</p></div>
+            <div class="step wide"><h5>Result</h5><p>A <span class="num">£5,000</span> budget splits into <span class="num">£2,121</span> for At Risk and <span class="num">£2,879</span> for Champions, for about <span class="num">£44.5K</span> expected net profit. Champions overtake At Risk above <span class="num">2.9%</span> response, so I recommend a holdout test before scaling.</p></div>
+          </div>
+          <div class="chart">
+            <h5>ROI by segment</h5>
+            <div id="chart-roi"></div>
+            <p class="note">Illustrative inputs: 30% margin, £3 cost per customer and assumed response rates. They show the method and are not forecasts.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel proj p2">
+        <div class="proj-head">
+          <div>
+            <h4>Product Line Profitability and Margin Performance</h4>
+            <div class="ctx">Nassau Candy Distributor · Python · Streamlit · Plotly</div>
+          </div>
+          <a class="btn small" href="https://github.com/harshit-insights/Nassau_candy_data_science_Project" target="_blank" rel="noopener">GitHub repo ↗</a>
+        </div>
+        <div class="proj-body">
+          <div class="metrics">
+            <div class="metric"><b>15</b><span>product SKUs analyzed</span></div>
+            <div class="metric"><b>5</b><span>manufacturing facilities mapped</span></div>
+            <div class="metric"><b>80%</b><span>margin on a low-volume product</span></div>
+          </div>
+          <div class="star">
+            <div class="step"><h5>Situation</h5><p>A candy distributor needed to understand profitability across <span class="num">15</span> product SKUs and <span class="num">5</span> manufacturing facilities.</p></div>
+            <div class="step"><h5>Task</h5><p>Find which products drive profit, where margin is weak and where supply risk sits.</p></div>
+            <div class="step wide"><h5>Action</h5><p>Ran Pareto analysis on order data, mapped factory dependencies, and delivered a research paper, an executive summary and an interactive dashboard.</p></div>
+            <div class="step wide"><h5>Result</h5><p>A <span class="num">5</span>-SKU product line drove most gross profit. One product sat near break-even at <span class="num">7.69%</span> margin, while an <span class="num">80%</span>-margin, low-volume product stood out as a growth opportunity. I also flagged single-point-of-failure risk in high-margin production.</p></div>
+          </div>
+          <div class="chart">
+            <h5>Gross margin, two products</h5>
+            <div id="chart-margin"></div>
+            <p class="note">Same business, very different margins: one product near break-even, one with room to grow.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel proj p3">
+        <div class="proj-head">
+          <div>
+            <h4>System Capacity and Care Load Analytics</h4>
+            <div class="ctx">CBP/HHS Unaccompanied Children Program · Python · Pandas · Streamlit</div>
+          </div>
+          <a class="btn small" href="https://github.com/harshit-insights/uac-care-load-analytics" target="_blank" rel="noopener">GitHub repo ↗</a>
+        </div>
+        <div class="proj-body">
+          <div class="metrics">
+            <div class="metric"><b>1,075</b><span>days of federal data (2023 to 2025)</span></div>
+            <div class="metric"><b>86 → 4</b><span>false-positive anomalies</span></div>
+            <div class="metric"><b>26</b><span>prolonged system-strain windows found</span></div>
+          </div>
+          <div class="star">
+            <div class="step"><h5>Situation</h5><p>Federal program data over <span class="num">1,075</span> days had unreported days and noisy anomaly flags, which made capacity monitoring unreliable.</p></div>
+            <div class="step"><h5>Task</h5><p>Build a trustworthy pipeline and dashboard to track system capacity and care load.</p></div>
+            <div class="step wide"><h5>Action</h5><p>Built a gap-corrected Python/Pandas pipeline with <span class="num">5</span> capacity metrics and <span class="num">5</span> KPIs, excluded <span class="num">355</span> unreported days with an <span class="mono">is_reported</span> flag, added a backlog-adjusted validation check, and deployed a live Streamlit dashboard.</p></div>
+            <div class="step wide"><h5>Result</h5><p>Cut false-positive anomalies from <span class="num">86</span> to <span class="num">4</span> and surfaced <span class="num">5</span> multi-day reporting gaps and <span class="num">26</span> prolonged system-strain windows. The dashboard is public on Streamlit Community Cloud.</p></div>
+          </div>
+          <div class="chart">
+            <h5>Anomaly flags raised</h5>
+            <div id="chart-anom"></div>
+            <p class="note">Before and after the backlog-adjusted validation check.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="panel" id="experience">
+      <div class="sec-title"><h3>Experience</h3><span>where I have done this work</span></div>
+      <div class="job">
+        <div class="when">Feb 2026 – Aug 2026</div>
+        <div>
+          <h4>Data Analyst Intern</h4>
+          <div class="org">Unified Mentor Pvt. Ltd.</div>
+          <ul>
+            <li>Cleaned, validated and analyzed healthcare and e-commerce datasets using Python (Pandas, NumPy), SQL and Excel to surface business insights.</li>
+            <li>Built Streamlit apps and Power BI dashboards for self-serve reporting by stakeholders.</li>
+            <li>Delivered <span class="num">3</span> end-to-end analytics projects and wrote research papers and executive summaries with business recommendations.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="education">
+      <div class="sec-title"><h3>Education</h3><span>qualification, academics, certifications</span></div>
+      <div class="edu">
+        <div class="card"><div class="label">B.Tech · 2025</div><div class="big">7.0 / 10</div><strong>Computer Science Engineering</strong><p>RR Institute of Modern Technology, Lucknow. Affiliated to Dr. A.P.J. Abdul Kalam Technical University.</p></div>
+        <div class="card"><div class="label">Class XII</div><div class="big">82%</div><strong>Intermediate</strong><p>Senior secondary examination.</p></div>
+        <div class="card"><div class="label">Class X</div><div class="big">78%</div><strong>High School</strong><p>Secondary examination.</p></div>
+      </div>
+      <div class="certs" aria-label="Certifications">
+        <span class="chip">Data Analyst · PW Skills</span>
+        <span class="chip">Data Analytics with Excel · Skill Course</span>
+        <span class="chip">Data Analytics with Power BI · Skill Course</span>
+      </div>
+    </section>
+
+    <section class="panel contact" id="contact">
+      <div class="label">Open to full-time roles · relocating anywhere in India</div>
+      <h3>Have a dataset that needs an answer?</h3>
+      <div class="row">
+        <span class="email" id="email">htiwari.data@gmail.com</span>
+        <button class="btn small" id="copy" type="button">Copy email</button>
+      </div>
+      <div class="row">
+        <a class="btn" href="mailto:htiwari.data@gmail.com">Open mail app</a>
+        <a class="btn" href="https://www.linkedin.com/in/harshit-tiwari-264a05249" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/harshit-insights" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <footer>© Harshit Tiwari · Gorakhpur, India</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  // charts: every bar is placed by one scale per chart
+  function bars(el, rows, min, max, fmt) {
+    var span = max - min, zero = (0 - min) / span * 100, html = '';
+    rows.forEach(function (r) {
+      var w = Math.abs(r.v) / span * 100;
+      var left = r.v >= 0 ? zero : zero - w;
+      var cls = 'fill' + (r.hi ? ' hi' : '') + (r.v < 0 ? ' neg' : '');
+      var valPos = r.v >= 0 ? 'left:calc(' + (zero + w) + '% + 8px)' : 'left:calc(' + (zero - w) + '% - 8px);transform:translateX(-100%)';
+      html += '<div class="brow"><span class="lab">' + r.l + '</span><div class="track">' +
+        '<span class="zero" style="left:' + zero + '%"></span>' +
+        '<span class="' + cls + '" style="left:' + left + '%;width:' + w + '%"></span>' +
+        '<span class="val" style="' + valPos + '">' + fmt(r.v) + '</span></div></div>';
+    });
+    el.innerHTML = html;
+  }
+  var one = function (v) { return (v < 0 ? '−' : '') + Math.abs(v).toFixed(1); };
+  bars(document.getElementById('chart-roi'), [
+    { l: 'At Risk', v: 11.13, hi: true }, { l: 'Champions', v: 7.26 }, { l: 'Loyal', v: 4.06 },
+    { l: 'New / Promising', v: 1.15 }, { l: 'Needs Attention', v: 0.33 }, { l: 'Lost / Hibernating', v: -0.58 }
+  ], -1.5, 14, one);
+  bars(document.getElementById('chart-margin'), [
+    { l: 'Near break-even product', v: 7.69 }, { l: 'Low-volume product', v: 80, hi: true }
+  ], 0, 100, function (v) { return v + '%'; });
+  bars(document.getElementById('chart-anom'), [
+    { l: 'Before check', v: 86 }, { l: 'After check', v: 4, hi: true }
+  ], 0, 100, function (v) { return String(v); });
+
+  // theme toggle
+  var root = document.documentElement;
+  function current() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.getElementById('theme').addEventListener('click', function () {
+    root.setAttribute('data-theme', current() === 'dark' ? 'light' : 'dark');
+  });
+
+  // highlight the nav link of the section in view
+  try {
+    var links = [].slice.call(document.querySelectorAll('#nav a'));
+    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    function onScroll() {
+      var y = window.scrollY + window.innerHeight * 0.3, idx = 0;
+      targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top + window.scrollY <= y) idx = i; });
+      links.forEach(function (a, i) { a.classList.toggle('on', i === idx); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  } catch (e) {}
+
+  // copy email
+  var copy = document.getElementById('copy'), email = document.getElementById('email');
+  copy.addEventListener('click', function () {
+    function reset(ms) { setTimeout(function () { copy.textContent = 'Copy email'; }, ms); }
+    function done() { copy.textContent = 'Copied'; reset(1600); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copy.textContent = 'Selected, press Ctrl+C'; reset(2400);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email.textContent).then(done, fallback);
+      else fallback();
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
